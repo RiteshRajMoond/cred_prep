@@ -7,6 +7,12 @@ public class Account {
     private String accountHolderName;
     private double balance;
 
+    Account(String accountnumber, String accountHolderName, double balance) {
+        this.accountNumber = accountnumber;
+        this.accountHolderName = accountHolderName;
+        this.balance = balance;
+    }
+
     public String getAccountNumber() {
         return accountNumber;
     }
@@ -19,12 +25,6 @@ public class Account {
         return balance;
     }
 
-    Account(String accountnumber, String accountHolderName, double balance) {
-        this.accountNumber = accountnumber;
-        this.accountHolderName = accountHolderName;
-        this.balance = balance;
-    }
-
     public void deposit(double amount) {
         if (amount <= 0) {
             throw new InvalidTransactionException("Amount deposited should be greater than zero.");
@@ -34,11 +34,11 @@ public class Account {
     }
 
     public void withdraw(double amount) {
-        if(amount <= 0 || amount > this.balance) {
+        if (amount <= 0 || amount > this.balance) {
             throw new InvalidTransactionException("Invalid amount withdrawl");
         }
 
-        this.balance += amount;
+        this.balance -= amount;
     }
 
     public void transfer(Account toAccount, double amount) {
